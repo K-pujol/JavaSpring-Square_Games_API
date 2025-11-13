@@ -5,8 +5,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
+/**
+ * class use to get random heartbeat
+ */
+
 @Service
 public class RandomHeartbeat implements HeartbeatSensor {
+
+    /**
+     * method that return a random number between 2 values
+     * @return
+     */
 
     @Override
     public int getHeartbeat() {
