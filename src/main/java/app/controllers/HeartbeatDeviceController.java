@@ -7,7 +7,10 @@ import app.models.device.WatchDevice;
 import app.models.factory.DeviceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -15,26 +18,21 @@ import java.util.List;
 public class HeartbeatDeviceController {
 
 
-    @Autowired
-    private DeviceFactory deviceFactory;
 
-    private final HeartbeatSensorDevice watch;
-    private final HeartbeatSensorDevice ring;
-    private final HeartbeatSensorDevice belt;
+    private final Map<String, HeartbeatSensorDevice> devices;
 
-
-    public HeartbeatDeviceController(DeviceFactory deviceFactory) {
-        this.deviceFactory = deviceFactory;
-        this.watch = deviceFactory.getDevice(WatchDevice.BEAN_ID);
-        this.ring = deviceFactory.getDevice(RingDevice.BEAN_ID);
-        this.belt = deviceFactory.getDevice(BeltDevice.BEAN_ID);
+    public HeartbeatDeviceController(Map<String, HeartbeatSensorDevice> devices) {
+        this.devices = devices;
     }
 
-
     @GetMapping
-    public List<HeartbeatSensorDevice> getDevice() {
+    public List<HeartbeatSensorDevice> getAllDevices() {
+        return new ArrayList<>(devices.values());
+    }
 
-        return watch.getAllHeartbeatDevice();
+    @GetMapping("/{type}")
+    public HeartbeatSensorDevice getDeviceByType(@PathVariable String type) {
+        return devices.get(type);
     }
 /*
     @GetMapping("/sensors")

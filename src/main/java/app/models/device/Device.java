@@ -21,13 +21,6 @@ public abstract class Device implements HeartbeatSensorDevice {
     }
 
     @Override
-    public List<HeartbeatSensorDevice> getAllHeartbeatDevice() {
-        List<HeartbeatSensorDevice> deviceList = new ArrayList<>();
-
-        return deviceList;
-    }
-
-    @Override
     public String getHeartbeatDevice(int id) {
         return "0";
     }
