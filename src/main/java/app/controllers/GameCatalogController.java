@@ -13,7 +13,7 @@ import java.util.Collection;
  */
 
 @RestController
-@RequestMapping("/games")
+@RequestMapping("/playablegames")
 public class GameCatalogController {
 
     @Autowired
@@ -26,50 +26,55 @@ public class GameCatalogController {
     }
 
 
-    @GetMapping("representation")
-    public ResponseEntity<GameCatalog> getRepresentation() {
-    }
-
     @PatchMapping("{id}/moves/plays")
     public ResponseEntity<?> playMove() {
+        return null;
     }
 
     @GetMapping("{id}/moves")
     public ResponseEntity<?> getMove() {
+        return null;
     }
 
     @GetMapping("{id}/representations")
     public ResponseEntity<?> getRepresentation() {
+        return null;
     }
 
     @PutMapping("{id}/saves")
     public ResponseEntity<?> saveGame() {
+        return null;
     }
 
     @GetMapping("{id}/victories")
     public ResponseEntity<?> checkVictory() {
+        return null;
     }
 
     @GetMapping("{id}/moves/playables")
     public ResponseEntity<?> getPlayableMove() {
+        return null;
     }
 
     @GetMapping("{id}/tokens")
     public ResponseEntity<?> getAllToken() {
+        return null;
     }
 
     @GetMapping("{id}/tokens/eaten")
     public ResponseEntity<?> getAllEatenToken() {
+        return null;
     }
 
     @GetMapping("{id}/tokens/alive")
     public ResponseEntity<?> getAllAlivePieces() {
+        return null;
     }
 
     @GetMapping("{id}/tokens/moves")
     public ResponseEntity<?> getMoveForAPiece() {
+        return null;
     }
-
 
 
 }

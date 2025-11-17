@@ -1,9 +1,6 @@
-package app.models.device;
+package app.models.devices;
 
 import app.interfaces.HeartbeatSensorDevice;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Device implements HeartbeatSensorDevice {
 

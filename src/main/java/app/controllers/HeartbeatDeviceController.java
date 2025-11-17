@@ -1,11 +1,6 @@
 package app.controllers;
 
 import app.interfaces.HeartbeatSensorDevice;
-import app.models.device.BeltDevice;
-import app.models.device.RingDevice;
-import app.models.device.WatchDevice;
-import app.models.factory.DeviceFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

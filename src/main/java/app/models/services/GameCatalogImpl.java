@@ -1,4 +1,4 @@
-package app.models;
+package app.models.services;
 
 import app.interfaces.GameCatalog;
 import fr.le_campus_numerique.square_games.engine.connectfour.ConnectFourGameFactory;

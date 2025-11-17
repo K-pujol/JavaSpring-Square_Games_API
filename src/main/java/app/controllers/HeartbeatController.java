@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.interfaces.HeartbeatSensor;
+import app.models.services.RandomHeartbeat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class HeartbeatController {
      * calling method getHeartbeat from RandomHeartbeat with the @autowired of HeartbeatSensor (interface)
      *
      * @return a number between 2 values >
-     * @see app.models.RandomHeartbeat
+     * @see RandomHeartbeat
      */
 
     @GetMapping

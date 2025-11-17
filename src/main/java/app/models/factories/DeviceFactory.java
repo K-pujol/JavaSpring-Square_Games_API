@@ -1,4 +1,4 @@
-package app.models.factory;
+package app.models.factories;
 
 import app.interfaces.HeartbeatSensorDevice;
 import lombok.RequiredArgsConstructor;
