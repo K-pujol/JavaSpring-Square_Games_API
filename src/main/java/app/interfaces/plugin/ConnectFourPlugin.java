@@ -1,6 +1,9 @@
 package app.interfaces.plugin;
 
+import app.dto.GameCreationParams;
+import fr.le_campus_numerique.square_games.engine.CellPosition;
 import fr.le_campus_numerique.square_games.engine.Game;
+import fr.le_campus_numerique.square_games.engine.Token;
 import fr.le_campus_numerique.square_games.engine.connectfour.ConnectFourGameFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,21 +11,30 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
-import java.util.OptionalInt;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
-@Component
+
+@Component("ConnectFour")
 public class ConnectFourPlugin implements GamePlugin {
-
 
     @Autowired
     MessageSource messageSource;
 
-    @Autowired
-    ConnectFourGameFactory ConnectFourGameFactory;
+    ConnectFourGameFactory connectfourgamefactory;
 
-    @Value("${game.ticTacToeName:ConnectFour}")
+    public ConnectFourPlugin() {
+        this.connectfourgamefactory = new ConnectFourGameFactory();
+    }
+
+    @Value("${game.ConnectFour:ConnectFour}")
     private String name;
 
+    @Override
+    public UUID getGameId() {
+        return null;
+    }
 
     @Override
     public String getName(Locale locale) {
@@ -30,7 +42,9 @@ public class ConnectFourPlugin implements GamePlugin {
     }
 
     @Override
-    public Game createGame(OptionalInt playerCount, OptionalInt boardSize) {
-        ConnectFourGameFactory.createGame();
+    public Game createGame(GameCreationParams params, Locale locale) {
+        messageSource.getMessage("game.ConnectFour.created", null, locale);
+        return connectfourgamefactory.createGame(params.getPlayerCount(), params.getBoardSize());
     }
+
 }

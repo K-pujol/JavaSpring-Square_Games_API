@@ -3,7 +3,6 @@ package app.dto;
 import fr.le_campus_numerique.square_games.engine.CellPosition;
 import fr.le_campus_numerique.square_games.engine.Token;
 import jakarta.validation.constraints.*;
-import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,27 +12,27 @@ import java.util.Set;
 import java.util.UUID;
 
 @Data
-public class GameCreationParams {
+public class GameSaveParams {
 
     @NotBlank
     @Pattern(regexp = "TicTacToe|ConnectFour|Taquin", message = "${gameCreationParams.name.Pattern}")
-    private String name;
+     String name;
 
     @Min(value = 1, message = "${gameCreationParams.playerCount.Min}")
     @Max(value = 100, message = "${gameCreationParams.playerCount.Max}")
-    private int playerCount;
+     int playerCount;
 
     @Min(value = 3, message = "{$gameCreationParams.boardSize.Min}")
     @Max(value = 8, message = "${gameCreationParams.boardSize.Max}")
-    private int boardSize;
+     int boardSize;
 
-
+    @NotNull
     UUID id;
 
-
+    @NotNull
     Set<UUID> playerIds;
 
-
-  //  Map<CellPosition, Token> board;
+    @NotNull
+    Map<CellPosition, Token> board;
 
 }
