@@ -2,7 +2,6 @@ package app.controllers;
 
 import app.dto.GameCreationParams;
 import app.dto.GameSaveParams;
-import app.models.services.GameServiceImpl;
 import app.models.services.GameServiceSave;
 import jakarta.validation.Valid;
 import lombok.Builder;
@@ -19,26 +18,21 @@ import java.util.UUID;
 public class GameController {
 
     @Autowired
-    private GameServiceSave gameSave;
-
-    @Autowired
-    private GameServiceImpl gameImpl;
-
-    @Autowired
     GameServiceSave gss;
 
     @PostMapping("/games")
     public ResponseEntity<GameSaveParams> createGame(@Valid @RequestBody GameCreationParams params) {
-        GameSaveParams game = gameSave.saveGame(params);
+        GameSaveParams game = gss.saveGame(params);
+
         return ResponseEntity.ok().body(game);
     }
 
     @GetMapping("/games/{gameId}")
-    public UUID getGame(@PathVariable UUID gameId) {
+    public ResponseEntity<GameSaveParams> getGame(@PathVariable UUID gameId) {
 
-       // Game game = gameService.get();
+      GameSaveParams game = gss.getGame(gameId);
 
-        return null;//game.getId();
+        return ResponseEntity.ok().body(game);
     }
 
     @DeleteMapping("/games/{gameId}")
