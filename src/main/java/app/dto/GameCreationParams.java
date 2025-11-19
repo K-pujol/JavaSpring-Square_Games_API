@@ -1,14 +1,7 @@
 package app.dto;
 
-import fr.le_campus_numerique.square_games.engine.CellPosition;
-import fr.le_campus_numerique.square_games.engine.Token;
 import jakarta.validation.constraints.*;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,13 +20,7 @@ public class GameCreationParams {
     @Max(value = 8, message = "${gameCreationParams.boardSize.Max}")
     private int boardSize;
 
-
     UUID id;
 
-
     Set<UUID> playerIds;
-
-
-  //  Map<CellPosition, Token> board;
-
 }

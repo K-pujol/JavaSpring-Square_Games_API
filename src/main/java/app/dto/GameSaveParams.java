@@ -4,9 +4,8 @@ import fr.le_campus_numerique.square_games.engine.CellPosition;
 import fr.le_campus_numerique.square_games.engine.Token;
 import jakarta.validation.constraints.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -30,9 +29,19 @@ public class GameSaveParams {
     UUID id;
 
     @NotNull
-    Set<UUID> playerIds;
+    Set<UUID> playerIds = new HashSet<>();
 
     @NotNull
     Map<CellPosition, Token> board;
+
+
+    public void addPlayer(UUID playerId) {
+        playerIds.add(playerId);
+    }
+
+    public void removePlayer(UUID playerId) {
+        playerIds.remove(playerId);
+    }
+
 
 }
