@@ -1,6 +1,7 @@
-package app.dao;
+package app.dao.use;
 
 import app.GameRecord;
+import app.dao.GameDAO;
 import app.dto.GameCreationParams;
 import app.dto.GameSaveParams;
 import jakarta.validation.Valid;
@@ -14,8 +15,8 @@ public class LocalGameDAO implements GameDAO {
     private final Map<UUID, GameRecord> gameStore = new HashMap<>();
 
     @Override
-    public GameSaveParams saveGame(@Valid GameCreationParams params) {
-        
+    public GameSaveParams saveGame(@Valid GameSaveParams params) {
+
         UUID uuid = UUID.randomUUID();
         UUID player1Uuid = UUID.randomUUID();
         UUID player2Uuid = UUID.randomUUID();

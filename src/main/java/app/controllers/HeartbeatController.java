@@ -1,7 +1,7 @@
 package app.controllers;
 
 import app.interfaces.HeartbeatSensor;
-import app.models.services.RandomHeartbeat;
+import app.services.RandomHeartbeat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

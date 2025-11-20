@@ -3,7 +3,7 @@ package app.controllers;
 import app.GameRecord;
 import app.dto.GameCreationParams;
 import app.dto.GameSaveParams;
-import app.models.services.GameServiceSave;
+import app.services.GameServiceSave;
 import jakarta.validation.Valid;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Locale;
 import java.util.UUID;
 
 @Builder
@@ -25,7 +26,7 @@ public class GameController {
     MessageSource msgSource;
 
     @PostMapping("/games")
-    public ResponseEntity<GameSaveParams> createGame(@Valid @RequestBody GameCreationParams params) {
+    public ResponseEntity<GameSaveParams> createGame(@Valid @RequestBody GameSaveParams params, Locale locale) {
         GameSaveParams game = gss.saveGame(params);
         return ResponseEntity.ok().body(game);
     }

@@ -9,7 +9,7 @@ import java.util.UUID;
 public interface GameDAO {
 
 
-    GameSaveParams saveGame(@Valid GameCreationParams params);
+    GameSaveParams saveGame(@Valid GameSaveParams params);
 
     GameSaveParams updateGame(@Valid GameSaveParams params);
 

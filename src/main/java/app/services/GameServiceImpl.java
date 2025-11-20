@@ -1,4 +1,4 @@
-package app.models.services;
+package app.services;
 
 import app.dto.GameCreationParams;
 import app.interfaces.plugin.GamePlugin;

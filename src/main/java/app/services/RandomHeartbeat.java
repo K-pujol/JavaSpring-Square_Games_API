@@ -1,4 +1,4 @@
-package app.models.services;
+package app.services;
 
 import app.interfaces.HeartbeatSensor;
 import org.springframework.stereotype.Service;
