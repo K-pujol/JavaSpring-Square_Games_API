@@ -1,9 +1,7 @@
 package app.interfaces.plugin;
 
-import app.dto.GameCreationParams;
-import fr.le_campus_numerique.square_games.engine.CellPosition;
+import app.dto.game.GameCreationDTO;
 import fr.le_campus_numerique.square_games.engine.Game;
-import fr.le_campus_numerique.square_games.engine.Token;
 import fr.le_campus_numerique.square_games.engine.connectfour.ConnectFourGameFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,8 +9,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 
@@ -42,9 +38,10 @@ public class ConnectFourPlugin implements GamePlugin {
     }
 
     @Override
-    public Game createGame(GameCreationParams params, Locale locale) {
+    public Game createGame(GameCreationDTO params, Locale locale) {
         messageSource.getMessage("game.ConnectFour.created", null, locale);
-        return connectfourgamefactory.createGame(params.getPlayerCount(), params.getBoardSize());
+        return null;
+       // return connectfourgamefactory.createGame(params.getPlayerCount(), params.getBoardSize());
     }
 
 }

@@ -1,9 +1,10 @@
 package app.dao.use;
 
+import app.dto.player.PlayerSaveDTO;
 import app.models.record.GameRecord;
 import app.dao.GameDAO;
-import app.dto.GameCreationParams;
-import app.dto.GameSaveParams;
+import app.dto.game.GameCreationDTO;
+import app.dto.game.GameSaveDTO;
 import jakarta.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,26 +16,26 @@ public class LocalGameDAO implements GameDAO {
 
 
     @Override
-    public GameSaveParams saveGame(@Valid GameCreationParams params) {
+    public GameSaveDTO saveGame(@Valid GameCreationDTO params) {
 
         UUID uuid = UUID.randomUUID();
         UUID player1Uuid = UUID.randomUUID();
         UUID player2Uuid = UUID.randomUUID();
 
-        GameSaveParams saveParams = new GameSaveParams(params);
+        GameSaveDTO saveParams = new GameSaveDTO(params);
+        PlayerSaveDTO gameSaveParams = new PlayerSaveDTO(params);
+
         saveParams.setId(uuid);
         saveParams.setName(params.getName());
-        saveParams.setPlayerCount(params.getPlayerCount());
-        saveParams.addPlayer(player1Uuid);
-        saveParams.addPlayer(player2Uuid);
         saveParams.setBoardSize(params.getBoardSize());
+       // gameSaveParams.getRepresentation(uuid);
+
 
         GameRecord gameRecord = new GameRecord(
                 saveParams.getName(),
-                saveParams.getPlayerCount(),
                 saveParams.getBoardSize(),
                 saveParams.getId(),
-                saveParams.getPlayerIds()
+                gameSaveParams.getRepresentation()
         );
 
         gameStore.put(uuid, gameRecord);
@@ -43,17 +44,18 @@ public class LocalGameDAO implements GameDAO {
     }
 
     @Override
-    public GameSaveParams updateGame(GameSaveParams params) {
+    public GameSaveDTO updateGame(GameSaveDTO params) {
         return null;
     }
 
     @Override
-    public GameRecord getGame(UUID gameId) {
-        return gameStore.get(gameId);
+    public GameRecord getGame(String gameId) {
+        gameStore.get(gameId);
+        return null;
     }
 
     @Override
-    public GameRecord deleteGame(UUID gameId) {
+    public GameRecord deleteGame(String gameId) {
         return gameStore.remove(gameId);
     }
 }

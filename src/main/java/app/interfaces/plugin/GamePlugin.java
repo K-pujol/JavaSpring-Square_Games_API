@@ -1,6 +1,6 @@
 package app.interfaces.plugin;
 
-import app.dto.GameCreationParams;
+import app.dto.game.GameCreationDTO;
 import fr.le_campus_numerique.square_games.engine.Game;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,6 +15,6 @@ public interface GamePlugin {
     String getName(Locale locale);
 
     @NotNull
-    Game createGame(GameCreationParams params, Locale locale);
+    Game createGame(GameCreationDTO params, Locale locale);
 
 }

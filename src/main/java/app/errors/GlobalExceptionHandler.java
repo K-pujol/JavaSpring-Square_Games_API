@@ -1,4 +1,4 @@
-package app.models.errors;
+package app.errors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

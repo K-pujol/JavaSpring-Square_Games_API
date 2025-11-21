@@ -1,20 +1,18 @@
 package app.dao;
 
 import app.models.record.GameRecord;
-import app.dto.GameCreationParams;
-import app.dto.GameSaveParams;
+import app.dto.game.GameCreationDTO;
+import app.dto.game.GameSaveDTO;
 import jakarta.validation.Valid;
-import java.util.UUID;
 
 public interface GameDAO {
 
+    GameSaveDTO saveGame(@Valid GameCreationDTO params);
 
-    GameSaveParams saveGame(@Valid GameCreationParams params);
+    GameSaveDTO updateGame(@Valid GameSaveDTO params);
 
-    GameSaveParams updateGame(@Valid GameSaveParams params);
+    GameRecord getGame(String gameId);
 
-    GameRecord getGame(UUID gameId);
-
-    GameRecord deleteGame(UUID gameId);
+    GameRecord deleteGame(String gameId);
 
 }

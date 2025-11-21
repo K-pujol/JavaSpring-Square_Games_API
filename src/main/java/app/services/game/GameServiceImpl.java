@@ -1,6 +1,6 @@
-package app.services;
+package app.services.game;
 
-import app.dto.GameCreationParams;
+import app.dto.game.GameCreationDTO;
 import app.interfaces.plugin.GamePlugin;
 import fr.le_campus_numerique.square_games.engine.Game;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class GameServiceImpl implements GamePlugin {
     }
 
     @Override
-    public Game createGame(GameCreationParams params, Locale locale) {
+    public Game createGame(GameCreationDTO params, Locale locale) {
        // GamePlugin gamePlugin = gamePlugins.get(params.get);
 
         return null;//gamePlugin.createGame(params, locale);
