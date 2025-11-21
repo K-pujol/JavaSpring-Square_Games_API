@@ -1,11 +1,10 @@
 package app.dao.use;
 
-import app.GameRecord;
+import app.models.record.GameRecord;
 import app.dao.GameDAO;
 import app.dto.GameCreationParams;
 import app.dto.GameSaveParams;
 import jakarta.validation.Valid;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -14,14 +13,15 @@ public class LocalGameDAO implements GameDAO {
 
     private final Map<UUID, GameRecord> gameStore = new HashMap<>();
 
+
     @Override
-    public GameSaveParams saveGame(@Valid GameSaveParams params) {
+    public GameSaveParams saveGame(@Valid GameCreationParams params) {
 
         UUID uuid = UUID.randomUUID();
         UUID player1Uuid = UUID.randomUUID();
         UUID player2Uuid = UUID.randomUUID();
-        GameSaveParams saveParams = new GameSaveParams();
 
+        GameSaveParams saveParams = new GameSaveParams(params);
         saveParams.setId(uuid);
         saveParams.setName(params.getName());
         saveParams.setPlayerCount(params.getPlayerCount());

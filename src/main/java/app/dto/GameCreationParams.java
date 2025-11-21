@@ -2,8 +2,6 @@ package app.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
-import java.util.Set;
-import java.util.UUID;
 
 @Data
 public class GameCreationParams {
@@ -20,7 +18,4 @@ public class GameCreationParams {
     @Max(value = 8, message = "${gameCreationParams.boardSize.Max}")
     private int boardSize;
 
-    UUID id;
-
-    Set<UUID> playerIds;
 }

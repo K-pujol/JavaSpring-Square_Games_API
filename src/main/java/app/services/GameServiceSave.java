@@ -1,7 +1,8 @@
 package app.services;
 
-import app.GameRecord;
+import app.models.record.GameRecord;
 import app.dao.use.JDBCGameDAO;
+import app.dto.GameCreationParams;
 import app.dto.GameSaveParams;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,10 @@ public class GameServiceSave {
 
     public GameServiceSave() {
         this.jdbcGame = new JDBCGameDAO();
+
     }
 
-    public GameSaveParams saveGame(GameSaveParams params) {
-
+    public GameSaveParams saveGame(GameCreationParams params) {
         return jdbcGame.saveGame(params);
     }
 

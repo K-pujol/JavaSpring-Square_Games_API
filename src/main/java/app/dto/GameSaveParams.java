@@ -13,6 +13,13 @@ import java.util.UUID;
 @Data
 public class GameSaveParams {
 
+    public GameSaveParams(GameCreationParams params) {
+        this.id = UUID.randomUUID();
+        this.name = params.getName();
+        this.playerCount = params.getPlayerCount();
+        this.boardSize = params.getBoardSize();
+    }
+
     @NotBlank
     @Pattern(regexp = "TicTacToe|ConnectFour|Taquin", message = "${gameCreationParams.name.Pattern}")
      String name;

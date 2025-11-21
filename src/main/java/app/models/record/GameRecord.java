@@ -1,4 +1,4 @@
-package app;
+package app.models.record;
 
 import java.util.Set;
 import java.util.UUID;

@@ -1,6 +1,6 @@
 package app.dao;
 
-import app.GameRecord;
+import app.models.record.GameRecord;
 import app.dto.GameCreationParams;
 import app.dto.GameSaveParams;
 import jakarta.validation.Valid;
@@ -9,7 +9,7 @@ import java.util.UUID;
 public interface GameDAO {
 
 
-    GameSaveParams saveGame(@Valid GameSaveParams params);
+    GameSaveParams saveGame(@Valid GameCreationParams params);
 
     GameSaveParams updateGame(@Valid GameSaveParams params);
 

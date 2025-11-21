@@ -1,7 +1,7 @@
 package app.dao.use;
 
 import app.DBConnection;
-import app.GameRecord;
+import app.models.record.GameRecord;
 import app.dao.GameDAO;
 import app.dto.GameCreationParams;
 import app.dto.GameSaveParams;
@@ -15,15 +15,16 @@ public class JDBCGameDAO implements GameDAO {
 
 
     @Override
-    public GameSaveParams saveGame(GameSaveParams params) {
+    public GameSaveParams saveGame(GameCreationParams params) {
+        GameSaveParams savedGame = new GameSaveParams(params);
         String sql = "INSERT INTO games (UUID, name, playerCount, boardSize) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, params.getId().toString());
-            stmt.setString(2, params.getName());
-            stmt.setInt(3, params.getPlayerCount());
-            stmt.setInt(4, params.getBoardSize());
+            stmt.setString(1, savedGame.getId().toString());
+            stmt.setString(2, savedGame.getName());
+            stmt.setInt(3, savedGame.getPlayerCount());
+            stmt.setInt(4, savedGame.getBoardSize());
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
@@ -32,7 +33,7 @@ public class JDBCGameDAO implements GameDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return params;
+        return savedGame;
     }
 
 
