@@ -1,10 +1,10 @@
-package app.dto.game;
+package app.dto.initialisation;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class GameCreationDTO {
+public class PartyCreationDTO {
 
     @NotBlank
     @Pattern(regexp = "TicTacToe|ConnectFour|Taquin", message = "${gameCreationParams.name.Pattern}")

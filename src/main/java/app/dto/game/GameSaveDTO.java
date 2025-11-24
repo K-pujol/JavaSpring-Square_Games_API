@@ -1,5 +1,6 @@
 package app.dto.game;
 
+import app.dto.initialisation.PartyCreationDTO;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import java.util.UUID;
@@ -7,7 +8,7 @@ import java.util.UUID;
 @Data
 public class GameSaveDTO {
 
-    public GameSaveDTO(GameCreationDTO params) {
+    public GameSaveDTO(PartyCreationDTO params) {
         this.id = UUID.randomUUID();
         this.name = params.getName();
         this.boardSize = params.getBoardSize();

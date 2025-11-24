@@ -1,11 +1,11 @@
 package app.interfaces;
 
 
-import app.dto.game.GameCreationDTO;
+import app.dto.initialisation.PartyCreationDTO;
 
 public interface GameService {
 
-    String createGame(GameCreationDTO params);
+    String createGame(PartyCreationDTO params);
 
     void deleteGame(String gameId);
 }

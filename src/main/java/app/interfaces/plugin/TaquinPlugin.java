@@ -1,6 +1,6 @@
 package app.interfaces.plugin;
 
-import app.dto.game.GameCreationDTO;
+import app.dto.initialisation.PartyCreationDTO;
 import fr.le_campus_numerique.square_games.engine.Game;
 import fr.le_campus_numerique.square_games.engine.taquin.TaquinGameFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class TaquinPlugin implements GamePlugin {
     }
 
     @Override
-    public Game createGame(GameCreationDTO params, Locale locale) {
+    public Game createGame(PartyCreationDTO params, Locale locale) {
 
         messageSource.getMessage("game.Taquin.created", null, locale);
         return null;

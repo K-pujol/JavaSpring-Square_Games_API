@@ -1,35 +1,35 @@
 package app.services.game;
 
 import app.dao.use.JDBCPlayerDAO;
+import app.dto.game.GameResponseDTO;
+import app.dto.initialisation.PartyCreationDTO;
+import app.dto.player.PlayerSaveDTO;
 import app.models.record.GameRecord;
 import app.dao.use.JDBCGameDAO;
-import app.dto.game.GameCreationDTO;
 import app.dto.game.GameSaveDTO;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 
 @Service
 public class GameServiceSave {
 
-
     private final JDBCGameDAO jdbcGame;
-    private final JDBCPlayerDAO jdbcPlayer;
 
-    public GameServiceSave() {
-        this.jdbcGame = new JDBCGameDAO();
-        this.jdbcPlayer = new JDBCPlayerDAO();
-
+    public GameServiceSave(JDBCGameDAO jdbcGame) {
+        this.jdbcGame = jdbcGame;
     }
 
 
-    public GameSaveDTO saveGame(GameCreationDTO params) {
-        GameSaveDTO savedGame = jdbcGame.saveGame(params);
-        jdbcPlayer.savePlayer(params, savedGame.getId());
-        return savedGame;
+    public UUID saveGame(PartyCreationDTO params) {
+        GameSaveDTO game = new GameSaveDTO(params);
+        return jdbcGame.saveGame(game);
     }
 
-    public GameRecord getGame(String gameId) {
+
+    public GameResponseDTO getGame(String gameId) {
         return jdbcGame.getGame(gameId);
     }
 

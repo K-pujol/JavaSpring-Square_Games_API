@@ -1,14 +1,18 @@
 package app.controllers;
 
+import app.dto.game.GameResponseDTO;
+import app.dto.player.PlayerSaveDTO;
 import app.models.record.GameRecord;
-import app.dto.game.GameCreationDTO;
+import app.dto.initialisation.PartyCreationDTO;
 import app.dto.game.GameSaveDTO;
 import app.services.game.GameServiceSave;
+import app.services.player.PlayerServiceSave;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 
 @RestController
@@ -16,15 +20,16 @@ import org.springframework.web.bind.annotation.*;
 public class GameController {
 
     @Autowired
-    GameServiceSave gss;
+    GameServiceSave gamesave;
     @Autowired
-    MessageSource msgSource;
+    PlayerServiceSave playersave;
 
 
     @PostMapping
-    public GameSaveDTO createGame(@Valid @RequestBody GameCreationDTO params) {
-        GameSaveDTO game = gss.saveGame(params);
-        return game;
+    public ResponseEntity<Void> createGame(@Valid @RequestBody PartyCreationDTO params) {
+        UUID gameId = gamesave.saveGame(params);
+        playersave.savePlayer(params, gameId);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/test")
@@ -34,8 +39,8 @@ public class GameController {
 
 
     @GetMapping("/{gameId}")
-    public ResponseEntity<GameRecord> getGame(@PathVariable String gameId) {
-        GameRecord game = gss.getGame(gameId);
+    public ResponseEntity<GameResponseDTO> getGame(@PathVariable String gameId) {
+        GameResponseDTO game = gamesave.getGame(gameId);
         if (game == null) {
             return ResponseEntity.notFound().build();
         }
@@ -46,7 +51,7 @@ public class GameController {
 
     @DeleteMapping("/{gameId}")
     public ResponseEntity<Void> deleteGame(@PathVariable String gameId) {
-        GameRecord game = gss.deleteGame(gameId);
+        GameRecord game = gamesave.deleteGame(gameId);
         if (game == null) {
             return ResponseEntity.notFound().build();
         }

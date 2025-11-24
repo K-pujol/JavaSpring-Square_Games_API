@@ -1,7 +1,7 @@
 package app.dao;
 
 
-import app.dto.game.GameCreationDTO;
+import app.dto.initialisation.PartyCreationDTO;
 import app.dto.game.GameSaveDTO;
 import app.models.record.GameRecord;
 import jakarta.validation.Valid;
@@ -9,7 +9,7 @@ import jakarta.validation.Valid;
 public interface TokenDAO {
 
 
-    GameSaveDTO saveToken(@Valid GameCreationDTO params);
+    GameSaveDTO saveToken(@Valid PartyCreationDTO params);
 
     GameRecord getToken(String gameId);
 

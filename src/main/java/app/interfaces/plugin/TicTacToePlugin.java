@@ -1,6 +1,6 @@
 package app.interfaces.plugin;
 
-import app.dto.game.GameCreationDTO;
+import app.dto.initialisation.PartyCreationDTO;
 import fr.le_campus_numerique.square_games.engine.Game;
 import fr.le_campus_numerique.square_games.engine.tictactoe.TicTacToeGameFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class TicTacToePlugin implements GamePlugin {
     }
 
     @Override
-    public Game createGame(GameCreationDTO params, Locale locale) {
+    public Game createGame(PartyCreationDTO params, Locale locale) {
         messageSource.getMessage("game.TicTacToe.created", null, locale);
         return null;
         //return TTTGameFactory.createGame(params.getPlayerCount(), params.getBoardSize());
