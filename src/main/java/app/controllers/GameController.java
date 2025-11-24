@@ -1,18 +1,16 @@
 package app.controllers;
 
 import app.dto.game.GameResponseDTO;
-import app.dto.player.PlayerSaveDTO;
-import app.models.record.GameRecord;
 import app.dto.initialisation.PartyCreationDTO;
-import app.dto.game.GameSaveDTO;
+import app.models.entities.Games;
+import app.models.entities.Players;
+import app.models.record.GameRecord;
 import app.services.game.GameServiceSave;
 import app.services.player.PlayerServiceSave;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 
 @RestController
@@ -26,9 +24,10 @@ public class GameController {
 
 
     @PostMapping
-    public ResponseEntity<Void> createGame(@Valid @RequestBody PartyCreationDTO params) {
-        UUID gameId = gamesave.saveGame(params);
-        playersave.savePlayer(params, gameId);
+    public ResponseEntity<Void> createGame(@Valid @RequestBody PartyCreationDTO partyCreationDTO) {
+        gamesave.saveGame(partyCreationDTO.getGames());
+        playersave.savePlayer(partyCreationDTO.getPlayer_one());
+        playersave.savePlayer(partyCreationDTO.getPlayer_two());
         return ResponseEntity.ok().build();
     }
 

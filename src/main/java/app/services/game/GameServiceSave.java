@@ -1,11 +1,10 @@
 package app.services.game;
 
-import app.dao.use.JDBCPlayerDAO;
 import app.dto.game.GameResponseDTO;
-import app.dto.initialisation.PartyCreationDTO;
-import app.dto.player.PlayerSaveDTO;
+import app.interfaces.GameRepository;
+import app.models.entities.Games;
 import app.models.record.GameRecord;
-import app.dao.use.JDBCGameDAO;
+import app.dao.jdbc.JDBCGameDAO;
 import app.dto.game.GameSaveDTO;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
@@ -17,15 +16,17 @@ import java.util.UUID;
 public class GameServiceSave {
 
     private final JDBCGameDAO jdbcGame;
+    private final GameRepository gameRepository;
 
-    public GameServiceSave(JDBCGameDAO jdbcGame) {
+
+    public GameServiceSave(JDBCGameDAO jdbcGame, GameRepository gameRepository) {
         this.jdbcGame = jdbcGame;
+        this.gameRepository = gameRepository;
     }
 
 
-    public UUID saveGame(PartyCreationDTO params) {
-        GameSaveDTO game = new GameSaveDTO(params);
-        return jdbcGame.saveGame(game);
+    public void saveGame(Games game) {
+        gameRepository.save(game);
     }
 
 

@@ -7,8 +7,7 @@ import java.util.UUID;
 @Data
 public class PlayerSaveDTO {
 
-    public PlayerSaveDTO(String representation, UUID gameId) {
-        this.gameId = gameId;
+    /*public PlayerSaveDTO(String representation) {
         this.playerId = UUID.randomUUID();
         this.representation = representation;
     }
@@ -21,5 +20,5 @@ public class PlayerSaveDTO {
 
     @NotBlank
     private UUID gameId;
-
+*/
 }

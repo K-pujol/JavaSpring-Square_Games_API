@@ -1,4 +1,4 @@
-package app.dao.use;
+package app.dao.jdbc;
 
 import app.DBConnection;
 import app.dao.PlayerDAO;
@@ -17,7 +17,7 @@ public class JDBCPlayerDAO implements PlayerDAO {
 
     @Override
     public void savePlayer(PlayerSaveDTO params) {
-        String sql = "INSERT INTO players (games_id, representation, UUID) VALUES (?, ?, ?)";
+    /*    String sql = "INSERT INTO players (games_id, representation, UUID) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -33,6 +33,8 @@ public class JDBCPlayerDAO implements PlayerDAO {
         } catch (Exception e) {
             throw new RuntimeException("Erreur sauvegarde player", e);
         }
+        */
+
     }
 
 

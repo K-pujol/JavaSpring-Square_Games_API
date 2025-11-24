@@ -8,7 +8,7 @@ import java.util.UUID;
 @Data
 public class GameSaveDTO {
 
-    public GameSaveDTO(PartyCreationDTO params) {
+  /*  public GameSaveDTO(PartyCreationDTO params) {
         this.id = UUID.randomUUID();
         this.name = params.getName();
         this.boardSize = params.getBoardSize();
@@ -23,5 +23,5 @@ public class GameSaveDTO {
     int boardSize;
 
     @NotNull
-    UUID id;
+    UUID id;*/
 }

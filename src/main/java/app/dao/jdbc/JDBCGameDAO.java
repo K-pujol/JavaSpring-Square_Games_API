@@ -1,8 +1,7 @@
-package app.dao.use;
+package app.dao.jdbc;
 
 import app.DBConnection;
 import app.dto.game.GameResponseDTO;
-import app.dto.initialisation.PartyCreationDTO;
 import app.models.record.GameRecord;
 import app.dao.GameDAO;
 import app.dto.game.GameSaveDTO;
@@ -20,12 +19,12 @@ public class JDBCGameDAO implements GameDAO {
 
     @Override
     public UUID saveGame(GameSaveDTO params) {
-        String sql = "INSERT INTO games (UUID, name, board_size) VALUES (?, ?, ?)";
+    /*    String sql = "INSERT INTO games (UUID, name, board_size) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            UUID gameId = params.getId(); // ← Récupère l'UUID généré
+            UUID gameId = params.getId();
 
             stmt.setString(1, gameId.toString());
             stmt.setString(2, params.getName());
@@ -40,7 +39,8 @@ public class JDBCGameDAO implements GameDAO {
 
         } catch (Exception e) {
             throw new RuntimeException("Erreur sauvegarde game", e);
-        }
+        }*/
+        return null;
     }
 
 

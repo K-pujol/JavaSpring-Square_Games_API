@@ -1,23 +1,15 @@
 package app.dto.initialisation;
 
+import app.models.entities.Games;
+import app.models.entities.Players;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
 public class PartyCreationDTO {
 
-    @NotBlank
-    @Pattern(regexp = "TicTacToe|ConnectFour|Taquin", message = "${gameCreationParams.name.Pattern}")
-    private String name;
-
-    @NotBlank
-    private String playerOneRepresentation;
-
-    @NotBlank
-    private String playerTwoRepresentation;
-
-    @Min(value = 3, message = "{$gameCreationParams.boardSize.Min}")
-    @Max(value = 8, message = "${gameCreationParams.boardSize.Max}")
-    private int boardSize;
+    private Games games;
+    private Players player_one;
+    private Players player_two;
 
 }
