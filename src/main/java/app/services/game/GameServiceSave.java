@@ -25,8 +25,14 @@ public class GameServiceSave {
     }
 
 
-    public void saveGame(Games game) {
-        gameRepository.save(game);
+    public String saveGame(String name, int boardSize) {
+        Games game = new Games();
+        game.setName(name);
+        game.setBoard_size(boardSize);
+
+        game = gameRepository.save(game);
+
+        return game.getUUID();
     }
 
 

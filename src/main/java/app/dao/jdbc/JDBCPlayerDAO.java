@@ -4,6 +4,7 @@ import app.DBConnection;
 import app.dao.PlayerDAO;
 import app.dto.player.PlayerSaveDTO;
 import app.models.record.GameRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -13,6 +14,9 @@ import java.sql.SQLException;
 
 @Repository
 public class JDBCPlayerDAO implements PlayerDAO {
+
+    @Autowired
+    private Connection connection;
 
 
     @Override
@@ -38,14 +42,13 @@ public class JDBCPlayerDAO implements PlayerDAO {
     }
 
 
-
     @Override
     public GameRecord getPlayer(String gameId) {
 
         GameRecord game = null;
         String sql = "SELECT * FROM games WHERE UUID = ?";
-        try (Connection conn = DBConnection.getInstance().getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (
+                PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setString(1, game.gameId().toString());
 

@@ -1,20 +1,21 @@
 package app.dao.jdbc;
 
-import app.DBConnection;
 import app.dto.game.GameResponseDTO;
 import app.models.record.GameRecord;
 import app.dao.GameDAO;
 import app.dto.game.GameSaveDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.UUID;
 
 @Repository
 public class JDBCGameDAO implements GameDAO {
+
+    @Autowired
+    private Connection connection;
 
 
     @Override
@@ -53,8 +54,8 @@ public class JDBCGameDAO implements GameDAO {
                 "JOIN players p ON g.UUID = p.games_id " +
                 "WHERE g.UUID = ?";
 
-        try (Connection conn = DBConnection.getInstance().getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setString(1, gameId);
             try (ResultSet rs = stmt.executeQuery()) {

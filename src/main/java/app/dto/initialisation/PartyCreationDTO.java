@@ -1,15 +1,23 @@
 package app.dto.initialisation;
 
-import app.models.entities.Games;
-import app.models.entities.Players;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
 public class PartyCreationDTO {
 
-    private Games games;
-    private Players player_one;
-    private Players player_two;
+    @NotBlank
+    private String gameName;
 
+    @Min(3)
+    @Max(10)
+    private int boardSize;
+
+    @NotBlank
+    @Size(min = 1, max = 1)
+    private String playerOneRepresentation;
+
+    @NotBlank
+    @Size(min = 1, max = 1)
+    private String playerTwoRepresentation;
 }
